@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Token Radar: pre-token protocols ranked by implied value</title>
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<a class="skip" href="#board">Skip to the board</a>
+<div class="shell">
+  <header class="top">
+    <div class="brand"><span class="mark" aria-hidden="true"></span><span class="brand-name">Token Radar</span></div>
+    <div class="top-meta"><span id="meta-date">Snapshot 2026-11-14</span><span>DefiLlama protocol index</span><span>radar-2 model</span></div>
+  </header>
+
+  <main id="board" tabindex="-1">
+    <section class="lede">
+      <div>
+        <h1>The launches that do not exist yet, ranked by what they would be worth.</h1>
+        <p>Every protocol in the DefiLlama index with at least $50M of TVL and no token on record is on the watchlist. The early radar adds every pre-token protocol below that floor the watchlist's own rule would keep. Each one is scored by one model, and each one carries a farm plan. Implied value is a model, not a promise — and never a price.</p>
+      </div>
+      <div class="facts" id="facts"></div>
+    </section>
+
+    <section class="spotlight" id="spotlight" aria-label="Top 10 most valuable launches"></section>
+
+    <div class="controls" id="controls"></div>
+
+    <section class="panel" id="table-panel">
+      <div class="table-wrap" id="table-wrap"></div>
+    </section>
+
+    <section class="panel model" id="model-panel">
+      <h2>How implied value is computed</h2>
+      <p class="sub">One function scores every protocol. No protocol name is special-cased, and no row is hand-picked.</p>
+      <div class="formula">implied = round( tvl_usd x sector multiple x (1 + clamp(change_7d, -60, 120) / 100 x 0.5) x (0.6 + min(age_days, 1095) / 1095 x 0.4) x (1 + 0.03 x min(chains - 1, 5)) )</div>
+      <p class="sub">The sector multiple is the market's own pricing: for a sector with at least 3 live-token protocols, the median market-cap/TVL of those live protocols, shrunk toward the market-wide median so a thin sector cannot price itself. A sector with fewer than 3 live tokens uses the market-wide median outright. TVL, seven-day growth, age with no token and chain count all come from the snapshot. The page recomputes every row from those figures and checks the number board.json carries, so the page's code and the board's data are visibly the same arithmetic.</p>
+      <p class="sub">“Records no token” is what the snapshot says — it is not proof a protocol has none. A protocol on the list may still hold a token its DefiLlama record does not carry, and a wrapped, staked or bridged product of a token that already trades is not a launch waiting to happen, so the board leaves those out. Protocols above the $50M floor that the watchlist leaves out are not added either: the house's rule reads the parent-protocol record the snapshot does not carry, and it left them out. This is research, not financial advice.</p>
+    </section>
+
+    <section class="panel detail-page" id="detail-page" hidden></section>
+  </main>
+
+  <footer class="foot">
+    <span>Source: DefiLlama public protocol index (api.llama.fi/protocols), fetched 2026-11-14. Snapshot as of 2026-11-14.</span>
+    <span>Token Radar, radar-2 model. Static page: no network, no tracking.</span>
+  </footer>
+</div>
+<script src="../data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
